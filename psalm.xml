@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/vimeo/psalm/master/config.xsd"
+       errorLevel="1">
+    <projectFiles>
+        <directory name="app"/>
+    </projectFiles>
+</psalm>
