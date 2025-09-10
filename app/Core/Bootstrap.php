@@ -31,8 +31,7 @@ class Bootstrap
 
         $this->router = new Router($this->container);
         $this->container->set(RouterInterface::class, fn () => $this->router);
-
-        // bindings
+      
         $this->container->set(\App\Domain\Repositories\CustomerRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoCustomerRepository());
         $this->container->set(\App\Domain\Repositories\ProductRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoProductRepository());
         $this->container->set(\App\Domain\Repositories\AccountRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoAccountRepository());

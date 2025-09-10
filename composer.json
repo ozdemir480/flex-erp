@@ -27,5 +27,6 @@
         "test": "phpunit",
         "migrate": "php bin/migrate.php",
         "seed": "php bin/seed.php"
+        "test": "phpunit"
     }
 }

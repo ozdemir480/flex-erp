@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Controllers\{HomeController,AuthController,CustomerController,ProductController,InvoiceController,PaymentController,JournalController,ReportController};
+use App\Controllers\HomeController;
 use App\Interfaces\RouterInterface;
 
 return static function (RouterInterface $router): void {
