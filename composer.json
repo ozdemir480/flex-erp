@@ -24,6 +24,9 @@
         "start": "php -S 127.0.0.1:8000 -t public",
         "cs": "php-cs-fixer fix -v",
         "stan": "psalm",
+        "test": "phpunit",
+        "migrate": "php bin/migrate.php",
+        "seed": "php bin/seed.php"
         "test": "phpunit"
     }
 }

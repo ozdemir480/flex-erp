@@ -31,6 +31,19 @@ class Bootstrap
 
         $this->router = new Router($this->container);
         $this->container->set(RouterInterface::class, fn () => $this->router);
+      
+        $this->container->set(\App\Domain\Repositories\CustomerRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoCustomerRepository());
+        $this->container->set(\App\Domain\Repositories\ProductRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoProductRepository());
+        $this->container->set(\App\Domain\Repositories\AccountRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoAccountRepository());
+        $this->container->set(\App\Domain\Repositories\InvoiceRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoInvoiceRepository());
+        $this->container->set(\App\Domain\Repositories\JournalRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoJournalRepository());
+        $this->container->set(\App\Domain\Repositories\PaymentRepositoryInterface::class, fn () => new \App\Infrastructure\Repositories\PdoPaymentRepository());
+        $this->container->set(\App\Services\InvoiceService::class, fn () => new \App\Services\InvoiceService($this->container->get(\App\Domain\Repositories\InvoiceRepositoryInterface::class)));
+        $this->container->set(\App\Services\AccountingService::class, fn () => new \App\Services\AccountingService(
+            $this->container->get(\App\Domain\Repositories\JournalRepositoryInterface::class),
+            $this->container->get(\App\Domain\Repositories\AccountRepositoryInterface::class),
+            $this->container->get(\App\Domain\Repositories\InvoiceRepositoryInterface::class)
+        ));
         $routes = require $root . '/config/routes.php';
         $routes($this->router);
     }
